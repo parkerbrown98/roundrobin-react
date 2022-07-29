@@ -60,7 +60,7 @@ export default function PeopleManager() {
                 { people.map(person => <PersonBox key={person.id} id={person.id} name={person.name} onDelete={handlePersonDelete} />) }
             </div>
             { loading ? <LoadingBars /> : (
-                <div className="mt-4 divide-y divide-stone-300">
+                <div className="mt-4 divide-y divide-stone-200">
                     { rounds.map((round, idx) => <PairRound key={idx} round={idx + 1} pairs={round} />) }
                 </div>
             )}
