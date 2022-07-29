@@ -12,3 +12,9 @@
     @apply absolute w-[3px] h-8 top-1/2 left-1/2 bg-stone-200 -z-10;
     transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 600px) {
+    input[type="search"] {
+        -webkit-appearance: none;
+    }
+}
