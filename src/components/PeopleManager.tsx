@@ -11,8 +11,6 @@ export type Person = {
     name: string
 }
 
-const API_URL = 'https://wwnukf.deta.dev';
-
 export default function PeopleManager() {
     const [people, setPeople] = useState<Person[]>([]);
     const [rounds, setRounds] = useState<string[][][]>([]);
@@ -32,7 +30,7 @@ export default function PeopleManager() {
         setLoading(true);
 
         const peopleString = people.map(person => person.name.replace(',', '_')).join(',');
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(process.env.REACT_APP_API_URL!, {
             params: {
                 p: peopleString
             }
