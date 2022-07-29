@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 import PersonBox from './PersonBox';
 import PersonInput from './PersonInput';
@@ -30,13 +31,24 @@ export default function PeopleManager() {
         setLoading(true);
 
         const peopleString = people.map(person => person.name.replace(',', '_')).join(',');
-        const response = await axios.get(process.env.REACT_APP_API_URL!, {
-            params: {
-                p: peopleString
-            }
-        });
 
-        setRounds(response.data as string[][][]);
+        try {
+            const response = await axios.get(process.env.REACT_APP_API_URL!, {
+                params: {
+                    p: peopleString
+                }
+            });
+
+            setRounds(response.data as string[][][]);
+        } catch (err) {
+            if (err instanceof AxiosError && err.response) {
+                const msg = err.response?.data?.detail;
+                toast.error(msg);
+            } else {
+                toast.error('Error creating rounds. Please try again.');
+            }
+        }
+        
         setLoading(false);
     }
 
