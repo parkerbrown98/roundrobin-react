@@ -1,26 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Container from './components/Container';
+import PeopleManager from './components/PeopleManager';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Container>
+            <h1 className="mt-16 text-center text-5xl sm:text-6xl font-bold">Pair Generator</h1>
+            <h4 className="text-center text-xl sm:text-2xl text-stone-400 font-semibold">(with rounds)</h4>
+            <PeopleManager />
+        </Container>
+    )
 }
 
 export default App;
